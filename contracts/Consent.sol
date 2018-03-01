@@ -1,40 +1,46 @@
 pragma solidity ^0.4.2;
 
-import './zeppelin/ownership/Ownable';
+import './zeppelin/ownership/Ownable.sol';
 
 contract ConsentGdpr is Ownable {
 
-    event NewConsent(string candidate, ConsentType consentType);
-    event ConsentIsRevoked(string _candidate, ConsentType _consentType, string _enterpriseName);
+    event NewConsent(string candidate, string consentType);
+    event ConsentIsRevoked(string _candidate, string _consentType, string _enterpriseName);
 
     enum Actor { individu, enterprise }
-    enum ConsentType { One, AllOther}
-
-    mapping(address => Consent[]) public consents;
-    mapping(address => string) public enterprisesToAddress;
-    mapping(string => address) public addressToEnterprise;
+    mapping(address => Consent[]) consents;
+    mapping(address => string) enterprisesToAddress;
+    mapping(string => address) addressToEnterprise;
+    mapping(string => string[]) consentsLabelToEnterprise;
 
     struct Consent {
         string enterpriseName;
         string candidate;
         string label;
-        ConsentType consentType;
+        string consentType;
         bool isActive;
         uint createdDate;
         uint expiryDate;
     }
 
-    function setEnterprise(string _entrepriseName) public {
-        enterprisesToAddress[msg.sender] = _entrepriseName;
+    Consent[] public totalConsents;
+
+    function setEnterprise(string _enterpriseName) public {
+        enterprisesToAddress[msg.sender] = _enterpriseName;
         addressToEnterprise[_enterpriseName] = msg.sender;
     }
 
-    function createConsent(string _candidate, ConsentType _consentType, string _label) private returns (Consent memory) {
+    function setConsentLabel(string _consentLabel) public {
+        string memory enterpriseName = enterprisesToAddress[msg.sender];
+        consentsLabelToEnterprise[enterpriseName].push(_consentLabel);
+    }
+
+    function createConsent(string _candidate, string _consentType, string _label) private returns (Consent) {
         string memory name = enterprisesToAddress[msg.sender];
-        return Consent({
+        return Consent ({
             candidate: _candidate, 
             consentType: _consentType, 
-            label: _label,
+            label: _label, 
             isActive: true, 
             enterpriseName: name, 
             createdDate: now, 
@@ -42,18 +48,40 @@ contract ConsentGdpr is Ownable {
             });
     }
 
-    function setConsent(string _candidate, ConsentType _consentType) external onlyOwner {
-        consents[msg.sender].push(createConsent(_candidate, _consentType));
+    function setConsent(string _candidate, string _consentType, string _label) external onlyOwner {
+        Consent memory consent = createConsent(_candidate, _consentType, _label);
+        consents[msg.sender].push(consent);
+        totalConsents.push(consent);
         NewConsent(_candidate, _consentType);
     }
 
-    function revokeConsent(string _candidate, ConsentType _consentType, string _enterpriseName) {
-        string memory enterpriseAddress = addressToEnterprise[_enterpriseName];
-        Consent memory consents = consents[enterpriseAddress];
-        for (uint index = 0; index < consents.length; index++) {
-            require(_candidate == consents[index].candidate && _consentType == consents[index].consentType);
-            consents[index].isActive = false;
+    function revokeConsent(string _candidate, string _consentType, string _enterpriseName) public {
+        address enterpriseAddress = addressToEnterprise[_enterpriseName];
+        Consent[] memory _consents = consents[enterpriseAddress];
+        for (uint index = 0; index < _consents.length; index++) {
+            require(keccak256(_candidate) == keccak256(_consents[index].candidate) && keccak256(_consentType) == keccak256(_consents[index].consentType));
+            consents[enterpriseAddress][index].isActive = false;
         }
         ConsentIsRevoked(_candidate, _consentType, _enterpriseName);
     }
+
+    function getConsentLabels(string _enterpriseName) internal returns (string[] ) {
+        return consentsLabelToEnterprise[_enterpriseName];
+    }
+
+    function getConsentsByEnterprise() external view returns (Consent[]) {
+        return consents[msg.sender];
+    }
+    
+    function getConsentsByCandidate(string _candidate) external view returns(Consent[] memory) {
+        Consent[] memory thisConsents = totalConsents;
+        Consent[] memory _consents;
+        uint counter = 0;
+        for (uint i = 0; i < thisConsents.length; i++) {
+            require(keccak256(_candidate) == keccak256(thisConsents[i]));
+            _consents[counter] = thisConsents[i];
+        }
+        return _consents;
+    }
+
 }
