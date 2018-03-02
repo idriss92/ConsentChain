@@ -6,6 +6,8 @@ contract ConsentGdpr is Ownable {
 
     event NewConsent(string candidate, string consentType);
     event ConsentIsRevoked(string _candidate, string _consentType, string _enterpriseName);
+    event SetEnterprise(string _enterpriseName);
+    event SetConsentLabel(string _consentLabel);
 
     enum Actor { individu, enterprise }
     mapping(address => Consent[]) consents;
@@ -28,11 +30,13 @@ contract ConsentGdpr is Ownable {
     function setEnterprise(string _enterpriseName) public {
         enterprisesToAddress[msg.sender] = _enterpriseName;
         addressToEnterprise[_enterpriseName] = msg.sender;
+        SetEnterprise(_enterpriseName);
     }
 
     function setConsentLabel(string _consentLabel) public {
         string memory enterpriseName = enterprisesToAddress[msg.sender];
         consentsLabelToEnterprise[enterpriseName].push(_consentLabel);
+        SetConsentLabel(_consentLabel);
     }
 
     function createConsent(string _candidate, string _consentType, string _label) private returns (Consent) {
@@ -61,8 +65,8 @@ contract ConsentGdpr is Ownable {
         for (uint index = 0; index < _consents.length; index++) {
             require(keccak256(_candidate) == keccak256(_consents[index].candidate) && keccak256(_consentType) == keccak256(_consents[index].consentType));
             consents[enterpriseAddress][index].isActive = false;
+            ConsentIsRevoked(_candidate, _consentType, _enterpriseName);
         }
-        ConsentIsRevoked(_candidate, _consentType, _enterpriseName);
     }
 
     function getConsentLabels(string _enterpriseName) internal returns (string[] ) {

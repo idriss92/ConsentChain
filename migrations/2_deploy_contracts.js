@@ -1,7 +1,6 @@
 var Ownable = artifacts.require("./zeppelin/ownership/Ownable.sol");
 var Killable = artifacts.require("./zeppelin/lifecycle/Killable.sol");
 var Authentication = artifacts.require("./Authentication.sol");
-var Consent = artifacts.require("./zeppelin/ownership/Ownable.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(Ownable);
@@ -9,6 +8,4 @@ module.exports = function(deployer) {
   deployer.deploy(Killable);
   deployer.link(Killable, Authentication);
   deployer.deploy(Authentication);
-  deployer.link(Ownable, Consent);
-  deployer.link(Consent);
 };
