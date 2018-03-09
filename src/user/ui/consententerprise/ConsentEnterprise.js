@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ConsentCandidat extends Component {
+class ConsentEnterprise extends Component {
     constructor(props){
         super(props)
 
@@ -60,4 +60,4 @@ class ConsentCandidat extends Component {
     }
 }
 
-export default ConsentCandidat;
+export default ConsentEnterprise;

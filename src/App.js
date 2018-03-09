@@ -23,6 +23,9 @@ class App extends Component {
           <Link to="/profile" className="pure-menu-link">Profile</Link>
         </li>
         <li className="pure-menu-item">
+          <Link to="/entreprise" className="pure-menu-link">Entreprise</Link>
+        </li>
+        <li className="pure-menu-item">
           <Link to="/candidat" className="pure-menu-link">Candidat</Link>
         </li>
         <LogoutButtonContainer />

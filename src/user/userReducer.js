@@ -1,4 +1,5 @@
 const initialState = {
+  user: null,
   data: null
 }
 
@@ -6,7 +7,7 @@ const userReducer = (state = initialState, action) => {
   if (action.type === 'USER_LOGGED_IN' || action.type === 'USER_UPDATED')
   {
     return Object.assign({}, state, {
-      data: action.payload
+      user: action.payload
     })
   }
 
@@ -19,7 +20,7 @@ const userReducer = (state = initialState, action) => {
   if (action.type === 'USER_LOGGED_OUT')
   {
     return Object.assign({}, state, {
-      data: null
+      user: null
     })
   }
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import ConsentCandidat from './ConsentCandidat'
-import {getCandidatConsent} from './ConsentCandidatActions'
+import ConsentEnterprise from './ConsentEnterprise'
+import {getCandidatConsent} from './ConsentEnterpriseActions'
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -16,9 +16,9 @@ const mapDispachToProps = (dispatch) => {
     }
 }
 
-const ConsentCandidatContainer = connect(
+const ConsentEnterpriseContainer = connect(
     mapStateToProps,
     mapDispachToProps
-)(ConsentCandidat)
+)(ConsentEnterprise)
 
-export default ConsentCandidatContainer
+export default ConsentEnterpriseContainer
