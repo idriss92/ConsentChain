@@ -121,23 +121,21 @@ export function getConsentByIndex(index) {
 
                 gdpr.deployed().then(function(instance) {
                     gdprInstance = instance
-                    let consents = []
-                    gdprInstance.getConsentsByIndexByEnterprise("enterpriseName", index, {from: coinbase})
+                    let consent
+                    gdprInstance.getConsentsByIndexByEnterprise("enterpriseName", Number(index), { from: coinbase})
                     .then(function(result) {
-                        console.log()
-                        result.forEach(function(index) {
-                            // consents.push(index.c[0])
-                            // console.log(indexes)
-                            // gdprInstance.getConsentsByIndexByEnterprise("enterpriseName", index.c[0], { from: coinbase})
-                            // .then(function(res) {
-                            //     // console.log(res)
-                            //     consents.push(res)
-                            // })
-                            // .catch(function(res) {
-                            //     console.error(res)
-                            // })
-                        })
-                        return dispatch(getConsentSuccess(consents))
+
+                        consent = {
+                            "index": result[0].c[0],
+                            "candidate": result[1],
+                            "consentType": result[2],
+                            "label": result[3],
+                            "isActive": result[4],
+                            "enterpriseName": result[5],
+                            "createdDate": result[6].c[0],
+                            "expiryDate": result[7].c[0]
+                        }
+                        return dispatch(getConsentSuccess(consent))
                     })
                     .catch(function(result) {
                         console.error(result)

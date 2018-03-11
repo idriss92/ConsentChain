@@ -22,7 +22,7 @@ export function createConsent() {
                 gdpr.deployed().then(function(instance) {
                     gdprInstance = instance
 
-                    gdprInstance.setConsent('candidate', 'consentType', 'label', 'enterpriseName', {from: coinbase})
+                    gdprInstance.setConsent('candidate', 'consentType22', 'label2A', 'enterpriseName', {from: coinbase})
                     .then(function(result) {
                         console.log(result)
                         return dispatch(loginUser())
