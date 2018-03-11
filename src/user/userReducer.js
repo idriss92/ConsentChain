@@ -1,6 +1,8 @@
 const initialState = {
   user: null,
-  data: null
+  data: null,
+  indexconsents: [],
+  consents: []
 }
 
 const userReducer = (state = initialState, action) => {
@@ -21,6 +23,18 @@ const userReducer = (state = initialState, action) => {
   {
     return Object.assign({}, state, {
       user: null
+    })
+  }
+
+  if (action.type === "GET_CONSENTS_INDEXES_DONE") {
+    return Object.assign({}, state, {
+      indexconsents: action.payload
+    })
+  }
+
+  if (action.type === 'GET_CONSENTS_SUCCESS') {
+    return Object.assign({}, state, {
+      consents: action.payload
     })
   }
 

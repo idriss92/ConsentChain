@@ -45,6 +45,9 @@ class App extends Component {
       <div className="App">
         <nav className="navbar pure-menu pure-menu-horizontal">
           <ul className="pure-menu-list navbar-right">
+            <li className="pure-menu-item">
+            <Link to="/job" className="pure-menu-link">Job</Link>
+            </li>
             <OnlyGuestLinks />
             <OnlyAuthLinks />
           </ul>

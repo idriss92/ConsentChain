@@ -91,6 +91,47 @@ contract ConsentGdpr {
     }
 
     // is working
+    function getConsentsIndexByEnterprise(string _enterpriseName) public view returns(uint[]) {
+        uint[] memory counters = new uint[](totalConsents.length);
+        uint  counter = 0;
+        for (uint i = 0; i < totalConsents.length; i++) {
+            require(keccak256(_enterpriseName) == keccak256(totalConsents[i].enterpriseName));
+            counters[counter] = totalConsents[i].index;
+            counter++;
+        }
+        return (counters);
+    }
+
+    // is working
+    function getConsentsByIndexByEnterprise(string _enterpriseName, uint _index) public view 
+    returns(
+        uint index,
+        string enterpriseName,
+        string candidate,
+        string label,
+        string consentType,
+        bool isActive,
+        uint createdDate,
+        uint expiryDate)
+        {
+            Consent memory consentReturned;
+        for (uint i = 0; i < totalConsents.length; i++) {
+            require(keccak256(_enterpriseName) == keccak256(totalConsents[i].enterpriseName));
+            require(_index == totalConsents[i].index);
+            consentReturned = totalConsents[i];
+        }
+
+                index = consentReturned.index;
+                enterpriseName = consentReturned.enterpriseName;
+                candidate = consentReturned.candidate;
+                label = consentReturned.label;
+                consentType = consentReturned.consentType;
+                isActive = consentReturned.isActive;
+                createdDate = consentReturned.createdDate;
+                expiryDate = consentReturned.expiryDate;
+    }
+
+    // is working
     function getConsentsByCandidateByIndexByEnterprise(string _candidate, string _enterpriseName, uint _index) external view 
     returns(
         uint index,

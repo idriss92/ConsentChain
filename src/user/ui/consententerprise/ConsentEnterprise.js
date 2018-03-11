@@ -5,13 +5,19 @@ class ConsentEnterprise extends Component {
         super(props)
 
         this.state = {
-            name: this.props.name
+            name: this.props.name,
+            indexes: this.props.indexconsents,
+            consents: this.props.consents
         }
     }
 
     componentWillMount(){
-        let res = this.props.loadConsent(this.state.name)
-        console.log(res);
+        const {loadConsentIndexes, loadConsentByIndex} = this.props;
+        loadConsentIndexes(this.state.name)
+        this.state.indexes.forEach(function(index) {
+            loadConsentByIndex(parseInt(index))
+        })
+        // console.log(res);
     }
     renderTable() {
         return (

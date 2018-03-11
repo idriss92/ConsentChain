@@ -9,7 +9,6 @@ export function signUpUser(name) {
 
   // Double-check web3's status.
   if (typeof web3 !== 'undefined') {
-
     return function(dispatch) {
       // Using truffle-contract we create the authentication object.
       const authentication = contract(AuthenticationContract)
@@ -32,9 +31,11 @@ export function signUpUser(name) {
           authenticationInstance.signup(name, {from: coinbase})
           .then(function(result) {
             // If no error, login user.
+            console.log(result)
             return dispatch(loginUser())
           })
           .catch(function(result) {
+            console.error(result);
             // If error...
           })
         })

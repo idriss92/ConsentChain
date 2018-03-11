@@ -14,6 +14,7 @@ import SignUp from './user/layouts/signup/SignUp'
 import Profile from './user/layouts/profile/Profile'
 import Candidat from './user/layouts/consents/candidat/Candidat'
 import Entreprise from './user/layouts/consents/enterprise/Enterprise'
+import Job from './user/layouts/job/Job'
 
 // Redux Store
 import store from './store'
@@ -40,6 +41,7 @@ ReactDOM.render((
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
           <Route path="candidat" component={UserIsAuthenticated(Candidat)} />
           <Route path="entreprise" component={UserIsAuthenticated(Entreprise)} />
+          <Route path="job" component={UserIsNotAuthenticated(Job)} />
         </Route>
       </Router>
     </Provider>
