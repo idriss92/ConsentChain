@@ -5,20 +5,11 @@ import { getConsentIndex, getConsentByIndex } from './ConsentEnterpriseActions'
 const mapStateToProps = (state, ownProps) => {
     return {
         name: state.user.user.name,
-        indexconsents: state.user.indexconsents
+        indexconsents: state.user.indexconsents,
+        consents: state.user.consents
+
     }
 }
-
-// const mapDispachToProps = (dispatch) => {
-//     return {
-//         loadConsentIndexes: () => {
-//             dispatch(getConsentIndex())
-//         },
-//         loadConsentByIndex: (index) => {
-//             dispatch(getConsentByIndex(index))
-//         }
-//     }
-// }
 
 const loadConsentIndexes = () => {
     return dispatch => {

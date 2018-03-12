@@ -13,12 +13,12 @@ class ConsentEnterprise extends Component {
     
 
     componentWillMount(){
-        const {loadConsentIndexes, loadConsentByIndex} = this.props;
-        loadConsentIndexes(this.state.name)
-        this.state.indexes.forEach(function(index) {
-            console.log(index)
-            loadConsentByIndex(index)
-        })
+        const {loadConsentIndexes} = this.props;
+        loadConsentIndexes()
+        // this.state.indexes.forEach(function(index) {
+        //     console.log(index)
+        //     loadConsentByIndex(index)
+        // })
     }
     renderTable() {
         return (
