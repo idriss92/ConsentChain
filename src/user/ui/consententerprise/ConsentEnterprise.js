@@ -17,7 +17,6 @@ class ConsentEnterprise extends Component {
     componentWillMount() {
         const { loadConsentIndexes } = this.props;
         loadConsentIndexes()
-        // loadAllConsents("idriss", "Talentsoft")
     }
 
     renderBody(indexconsents) {
@@ -104,7 +103,7 @@ class ConsentEnterprise extends Component {
         }
         return <button className="pure-button red">Desactivated</button>
     }
-    
+
     render() {
         return (
             <div >
