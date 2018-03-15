@@ -40,19 +40,33 @@ class ConsentCandidat extends Component {
 
     renderTable(indexconsents) {
         return (
-            <table className="pure-table pure-table-horizontal">
-                <thead>
-                    <tr>
-                        <th>Consents num</th>
-                        <th>Consent ID</th>
-                        <th>Show Details</th>
-                    </tr>
-                </thead>
-
-                <tbody>
+            <div>
+                <div className="company">
+                    <h3>Coolblue</h3>
+                    <div>
+                        <input type="checkbox" checked="yes"/>
+                        <label>contact me for opportunity: Devops engineer<span className="consent-date"> - changed on 2018-03-01</span></label>
+                    </div>
+                    <div> <input type="checkbox"/>
+                        <label>contact me for all opportunities</label>
+                    </div>
+                </div>
+                <div className="company">
+                    <h3>Dior</h3>
+                    <div>
+                        <input type="checkbox" checked="yes"/>
+                        <label>contact me for opportunity: Software developer <span className="consent-date"> - changed on 2018-03-02</span></label>
+                    </div>
+                    <div> <input type="checkbox"/>
+                        <label>contact me for all opportunities</label>
+                    </div>
+                </div>
                     {this.renderBody(indexconsents)}
-                </tbody>
-            </table>
+                
+                <div className="submitDiv">
+                    <input type="submit"/>
+                </div>
+            </div>
         )
     }
 
