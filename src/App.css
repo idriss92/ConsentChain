@@ -16,6 +16,78 @@ code {
   background: #eee;
 }
 
+#vacancy {
+  background-color: #f0f2f4;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+#vacancy-background-image {
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  height: 350px;
+
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.vacancy-section {
+  background-color: #fff;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+#vacancy-header {
+  text-align: center;
+  padding: 20px;
+}
+#vacancy-content {
+  z-index: 3;
+  position: relative;
+  margin: 120px auto 20px;
+  padding: 0 20px;
+  max-width: 800px;
+}
+
+#vacancy-description {
+  padding: 5px 20px;
+}
+
+#vacancy-powered-by-hellotalent {
+  text-align: right;
+  font-size: 12px;
+  vertical-align: middle;
+}
+.application-form-item-label {
+  padding-top: 9px;
+  text-align: right;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.application-form-input, .application-form-textarea {
+  border: 1px solid #cacaca;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: tahoma,verdana,segoe,sans-serif;
+  font-size: 13px;
+  padding: 4px;
+  width: 100%;
+}
+.application-form-item-label, .application-form-item-content {
+  padding: 5px;
+}
+.vacancy-meta {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 16px;
+  line-height: 23px;
+  color: #87888d;
+}
+
 .container {
   box-sizing: border-box;
   width: 100%;
@@ -28,6 +100,16 @@ code {
 
 .pure-button-primary:hover {
   background-color: #233e5e;
+}
+
+.vacancy-title {
+  display: block;
+  font-size: 1.5em;
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
 }
 
 .pure-form input[type="text"]:focus {
