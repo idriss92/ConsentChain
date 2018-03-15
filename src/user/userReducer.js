@@ -47,6 +47,10 @@ const userReducer = (state = initialState, action) => {
     })
   }
 
+  if (action.type === 'SET_CONSENTLABEL_SUCCESS') {
+    return Object.assign({}, state)
+  }
+ 
   return state
 }
 

@@ -35,9 +35,9 @@ export function getCandidatConsent(_candidate) {
                 }
                 consentGdpr.deployed().then(function(instance){
                     consentInstance = instance
-                    consentInstance.getConsentLabelsIndexByEnterprise("TAL",{from: coinbase})
+                    consentInstance.getConsentLabelsIndexByEnterprise("Talentsoft",{from: coinbase})
                     .then(function(result) {
-                        console.log(result.length);
+                        console.log(result);
                         return dispatch(getCandidatConsentSuccess(result.length))
                     })
                     .catch(function(result) {
