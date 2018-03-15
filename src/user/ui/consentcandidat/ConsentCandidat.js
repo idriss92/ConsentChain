@@ -15,7 +15,7 @@ class ConsentCandidat extends Component {
 
     componentWillMount(){
         const { loadIndexConsent } = this.props;
-        loadIndexConsent("Talentsoft", this.state.name)
+        loadIndexConsent("idriss","Talentsoft")
 
     }
 

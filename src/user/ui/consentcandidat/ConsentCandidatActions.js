@@ -82,6 +82,7 @@ export function getConsentIndex(_candidate, _enterpriseName) {
                     let indexes = []
                     consentInstance.getConsentsIndexByCandidateByEnterprise(_candidate, _enterpriseName,{from: coinbase})
                     .then(function(result) {
+                        console.log(result)
                         result.forEach(function(index) {
                             indexes.push(index.c[0])
                         })

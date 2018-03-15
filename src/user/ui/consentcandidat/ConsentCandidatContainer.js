@@ -6,7 +6,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         name: state.user.user.name,
         candidatindexconsents: state.user.candidatindexconsents,
-        consent: state.user.candidatconsent,
+        candidatconsent: state.user.candidatconsent,
         showConsent: state.user.showConsentCandidat
     }
 }
@@ -15,7 +15,7 @@ const loadConsent = (index) => {
     return dispatch => dispatch(getConsentByIndex(index))
 }
 
-const loadIndexConsent = (_enterpriseName, _candidate) => {
+const loadIndexConsent = (_candidate, _enterpriseName) => {
     return dispatch => dispatch(getConsentIndex(_candidate, _enterpriseName))
 }
 
