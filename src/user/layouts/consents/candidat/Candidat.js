@@ -7,8 +7,8 @@ class Candidat extends Component {
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-          <h1>Consents</h1>
-            <p>Edit my consents here.</p>
+          <h1>My Permissions</h1>
+            
             <ConsentCandidatContainer />
           </div>
         </div>

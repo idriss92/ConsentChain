@@ -1,0 +1,27 @@
+body {
+
+    color: #0E3568;
+}
+
+.company label {
+    padding-left: 5px
+}
+
+.consent-date {
+    color: #90949c;
+    font-size: 12px
+}
+
+.company{
+    /*color: #06D0B1;*/
+    color: #0E3568;
+}
+
+.company h3 {
+    border-bottom: 1px solid #0E3568;
+}
+
+.submitDiv {
+
+    margin-top:40px
+}

@@ -15,45 +15,47 @@ class ConsentCandidat extends Component {
     }
     renderTable() {
         return (
-            <table className="pure-table pure-table-horizontal">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>Year</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Honda</td>
-                        <td>Accord</td>
-                        <td>2009</td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>Toyota</td>
-                        <td>Camry</td>
-                        <td>2012</td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>Hyundai</td>
-                        <td>Elantra</td>
-                        <td>2010</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div>
+                <div className="company">
+                    <h3>Unicorn startup</h3>
+                    <div>
+                        <input type="checkbox"/>
+                        <label>contact me for opportunity: Data engineer</label>
+                    </div>
+                    <div> <input type="checkbox"/>
+                        <label>contact me for all opportunities</label>
+                    </div>
+                </div>
+                <div className="company">
+                    <h3>Coolblue</h3>
+                    <div>
+                        <input type="checkbox" checked="yes"/>
+                        <label>contact me for opportunity: Devops engineer<span className="consent-date"> - changed on 2018-03-01</span></label>
+                    </div>
+                    <div> <input type="checkbox"/>
+                        <label>contact me for all opportunities</label>
+                    </div>
+                </div>
+                <div className="company">
+                    <h3>Dior</h3>
+                    <div>
+                        <input type="checkbox" checked="yes"/>
+                        <label>contact me for opportunity: Software developer <span className="consent-date"> - changed on 2018-03-02</span></label>
+                    </div>
+                    <div> <input type="checkbox"/>
+                        <label>contact me for all opportunities</label>
+                    </div>
+                </div>
+                <div className="submitDiv">
+                    <input type="submit"/>
+                </div>
+            </div>
         )
     }
     render() {
         return (
             <div >
-                Hello {this.props.name}
+                
                 {this.renderTable()}
             </div>
         )
