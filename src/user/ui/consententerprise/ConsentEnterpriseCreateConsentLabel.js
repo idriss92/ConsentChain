@@ -10,6 +10,7 @@ class ConsentEnterpriseCreateConsentLabel extends Component {
             enterpriseName: 'Talentsoft'
         }
         this.handleOnChange = this.handleOnChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentWillMount() {
@@ -17,10 +18,8 @@ class ConsentEnterpriseCreateConsentLabel extends Component {
     }
 
     handleOnChange(event) {
-        console.log(event)
+        console.log(this.props)
         const { name, value } = event.target
-        console.log(name)
-        console.log(value)
         this.setState({
             [name]: value
         })
@@ -28,7 +27,8 @@ class ConsentEnterpriseCreateConsentLabel extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.newConsentLabel(this.state.enterpriseName, this.state.consentType, this.state.consentLabel)
+        const { newConsentLabel } = this.props;
+        newConsentLabel(this.state.enterpriseName, this.state.consentType, this.state.consentLabel)
     }
 
     renderFormCreation() {
