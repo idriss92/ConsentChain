@@ -8,14 +8,6 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         onNewConsentCommit: () => {
-//             dispatch(createConsent())
-//         }
-//     }
-// }
-
 const createNewConsent = (candidate, consentType, label, enterpriseName) => {
     return dispatch => {
         dispatch(createConsent(candidate, consentType, label, enterpriseName))
