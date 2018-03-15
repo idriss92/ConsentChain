@@ -46,17 +46,16 @@ export function getCandidatConsent(_candidate) {
             web3.eth.getCoinbase((error, coinbase) => {
                 if (error) {
                     console.error(error);
-                    console.log('error')
                 }
                 consentGdpr.deployed().then(function(instance){
                     consentInstance = instance
                     consentInstance.getConsentLabelsIndexByEnterprise("Talentsoft",{from: coinbase})
                     .then(function(result) {
-                        console.log(result.length);
+                        console.log(result);
                         return dispatch(getCandidatConsentSuccess(result.length))
                     })
                     .catch(function(result) {
-                        console.log(result)
+                        console.error(result)
                     })
                 })
             })            
@@ -124,13 +123,14 @@ export function getConsentByIndex(index) {
                     let consent
                     gdprInstance.getConsentsByIndexByEnterprise("Talentsoft", index, {from: coinbase})
                     .then(function(result) {
+                        console.log(result)
                         consent = {
-                            "index": result[0].c[0],
-                            "candidate": result[1],
-                            "consentType": result[2],
-                            "label": result[3],
-                            "isActive": result[4],
-                            "enterpriseName": result[5],
+                            "index": result[0].c[0],                            
+                            "enterpriseName": result[1],
+                            "candidate": result[2],
+                            "consentType": result[3],
+                            "label": result[4],
+                            "isActive": result[5],
                             "createdDate": result[6].c[0],
                             "expiryDate": result[7].c[0]
                         }
