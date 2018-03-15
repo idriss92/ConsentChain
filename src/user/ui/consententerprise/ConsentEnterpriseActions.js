@@ -8,6 +8,7 @@ const contract = require('truffle-contract')
 export const CONSENT_CANDIDAT_SUCCESS = 'CONSENT_CANDIDAT_SUCCESS'
 export const GET_CONSENTS_INDEXES_DONE = 'GET_CONSENTS_INDEXES_DONE'
 export const GET_CONSENTS_SUCCESS = 'GET_CONSENTS_SUCCESS'
+export const SET_CONSENTLABEL_SUCCESS = 'SET_CONSENTLABEL_SUCCESS'
 
 function getCandidatConsentSuccess(consents) {
     return {
@@ -27,6 +28,13 @@ function getConsentSuccess(consents) {
     return {
         type: GET_CONSENTS_SUCCESS,
         payload: consents
+    }
+}
+
+function setConsentLabel() {
+    return {
+        type: SET_CONSENTLABEL_SUCCESS,
+        payload: null
     }
 }
 
@@ -135,6 +143,53 @@ export function getConsentByIndex(index) {
                             "expiryDate": result[7].c[0]
                         }
                         return dispatch(getConsentSuccess(consent))
+                    })
+                    .catch(function(result) {
+                        console.error(result)
+                    })
+
+                })
+            })
+        }
+    } else {
+        console.error('Web3 is not initialized.')
+    }
+}
+
+export function createConsentLabel(enterpriseName, consentType, consentLabel) {
+    let web3 = store.getState().web3.web3Instance
+
+    if(typeof web3 !== 'undefined') {
+        return function(dispatch) {
+            const gdpr = contract(ConsentGdprContract)
+            gdpr.setProvider(web3.currentProvider)
+
+            var gdprInstance
+
+            web3.eth.getCoinbase((error, coinbase) => {
+                if (error) {
+                    console.error(error)
+                }
+
+                gdpr.deployed().then(function(instance) {
+                    gdprInstance = instance
+                    // let consent
+                    gdprInstance.setConsentLabel(consentLabel, enterpriseName, consentType, {from: coinbase})
+                    .then(function(result) {
+                        console.log('create consent label')
+                        // console.log(result)
+                        return dispatch(setConsentLabel())
+                        // consent = {
+                        //     "index": result[0].c[0],                            
+                        //     "enterpriseName": result[1],
+                        //     "candidate": result[2],
+                        //     "consentType": result[3],
+                        //     "label": result[4],
+                        //     "isActive": result[5],
+                        //     "createdDate": result[6].c[0],
+                        //     "expiryDate": result[7].c[0]
+                        // }
+                        // return dispatch(getConsentSuccess(consent))
                     })
                     .catch(function(result) {
                         console.error(result)

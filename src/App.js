@@ -11,8 +11,7 @@ import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
-import './candidate.css'
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends Component {
   render() {
@@ -21,6 +20,9 @@ class App extends Component {
         <li className="pure-menu-item">
           <Link to="/job" className="pure-menu-link">Job</Link>
         </li>
+        <li className="pure-menu-item">
+        <Link to="/consentlabel" className="pure-menu-link">ConsentLabel</Link>
+      </li>
         <li className="pure-menu-item">
           <Link to="/dashboard" className="pure-menu-link">Dashboard</Link>
         </li>

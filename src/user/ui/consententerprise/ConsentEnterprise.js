@@ -13,9 +13,6 @@ class ConsentEnterprise extends Component {
         }
     }
 
-    getConsent(index) {
-
-    }
 
     componentWillMount() {
         const { loadConsentIndexes } = this.props;
@@ -85,7 +82,7 @@ class ConsentEnterprise extends Component {
                     </tr>
                     <tr>
                         <td>isActive</td>
-                        <td>{consent.isActive}</td>
+                        <td>{this.renderButtonActivated(consent.isActive)}</td>
                     </tr>
                     <tr>
                         <td>createdDate</td>
@@ -99,6 +96,14 @@ class ConsentEnterprise extends Component {
             </table>
         return <div></div>
     }
+    
+    renderButtonActivated(isActivated) {
+        if(isActivated) {
+            return <button className="pure-button green">Activated</button>
+        }
+        return <button className="pure-button red">Desactivated</button>
+    }
+
     render() {
         return (
             <div >

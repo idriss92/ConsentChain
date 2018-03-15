@@ -131,7 +131,9 @@ contract ConsentGdpr {
                 expiryDate = consentReturned.expiryDate;
     }
 
-    // is working
+    /*
+    * is working
+    **/
     function getConsentsByCandidateByIndexByEnterprise(string _candidate, string _enterpriseName, uint _index) external view 
     returns(
         uint index,

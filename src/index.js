@@ -15,6 +15,7 @@ import Profile from './user/layouts/profile/Profile'
 import Candidat from './user/layouts/consents/candidat/Candidat'
 import Entreprise from './user/layouts/consents/enterprise/Enterprise'
 import Job from './user/layouts/job/Job'
+import ConsentLabel from './user/layouts/consents/consentLabel/ConsentLabel'
 
 // Redux Store
 import store from './store'
@@ -42,6 +43,7 @@ ReactDOM.render((
           <Route path="candidat" component={UserIsAuthenticated(Candidat)} />
           <Route path="entreprise" component={UserIsAuthenticated(Entreprise)} />
           <Route path="job" component={UserIsAuthenticated(Job)} />
+          <Route path="consentlabel" component={UserIsAuthenticated(ConsentLabel)} />
         </Route>
       </Router>
     </Provider>

@@ -2,8 +2,11 @@ const initialState = {
   user: null,
   data: null,
   indexconsents: [],
+  candidatindexconsents: [],
   consent: null,
+  candidatconsent: null,
   showConsent: false,
+  showConsentCandidat: false,
   consentCreated: false
 }
 
@@ -17,7 +20,7 @@ const userReducer = (state = initialState, action) => {
 
   if (action.type === 'CONSENT_CANDIDAT_SUCCESS') {
     return Object.assign({}, state, {
-      data: action.payload
+      candidatconsent: action.payload
     })
   }
 
@@ -47,6 +50,13 @@ const userReducer = (state = initialState, action) => {
     })
   }
 
+  if (action.type === 'CONSENTINDEX_CANDIDAT_SUCCESS') {
+    return Object.assign({}, state, {
+      candidatindexconsents: action.payload,
+      showConsentCandidat: true
+    })
+  }
+ 
   return state
 }
 
