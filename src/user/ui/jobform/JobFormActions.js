@@ -1,10 +1,18 @@
 import ConsentGdpr from '../../../../build/contracts/ConsentGdpr.json'
-import { loginUser } from '../loginbutton/LoginButtonActions'
 import store from '../../../store'
 
 const contract = require('truffle-contract')
 
-export function createConsent() {
+export const CONSENT_CREATED_SUCCESS = 'CONSENT_CREATED_SUCCESS'
+
+function createConsentSuccess() {
+    return {
+        type: CONSENT_CREATED_SUCCESS,
+        payload: true
+    }
+}
+
+export function createConsent(candidate, consentType, label, enterpriseName) {
     let web3 = store.getState().web3.web3Instance
 
     if (typeof web3 !== 'undefined') {
@@ -22,10 +30,10 @@ export function createConsent() {
                 gdpr.deployed().then(function(instance) {
                     gdprInstance = instance
 
-                    gdprInstance.setConsent('candidate', 'consentType22', 'label2A', 'enterpriseName', {from: coinbase})
+                    gdprInstance.setConsent(candidate, consentType, label, enterpriseName, {from: coinbase})
                     .then(function(result) {
                         console.log(result)
-                        return dispatch(loginUser())
+                        return dispatch(createConsentSuccess())
                     })
                     .catch(function(result) {
                         console.error(result)

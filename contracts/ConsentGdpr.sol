@@ -15,7 +15,6 @@ contract ConsentGdpr {
     event ConsentIsRevoked(string _candidate, string _consentType, string _enterpriseName);
     event SetEnterprise(string _enterpriseName);
     event SetConsentLabel(string _consentLabel);
-    event GetConsent(Consent consent);
 
     //** modifiers */
     modifier consentLabelDontExistsForEnterprise(string _consentType, string _enterpriseName) {
@@ -130,7 +129,6 @@ contract ConsentGdpr {
                 isActive = consentReturned.isActive;
                 createdDate = consentReturned.createdDate;
                 expiryDate = consentReturned.expiryDate;
-        GetConsent(consentReturned);
     }
 
     // is working

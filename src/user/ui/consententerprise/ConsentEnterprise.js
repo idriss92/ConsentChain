@@ -1,67 +1,110 @@
 import React, { Component } from 'react';
 
 class ConsentEnterprise extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
         this.state = {
             name: this.props.name,
             indexes: this.props.indexconsents,
-            consents: this.props.consents
+            consent: this.props.consent,
+            consentId: 0,
+            showConsent: this.props.showConsent
         }
     }
-    
 
-    componentWillMount(){
-        const {loadConsentIndexes} = this.props;
-        loadConsentIndexes()
-        // this.state.indexes.forEach(function(index) {
-        //     console.log(index)
-        //     loadConsentByIndex(index)
-        // })
+    getConsent(index) {
+
     }
-    renderTable() {
+
+    componentWillMount() {
+        const { loadConsentIndexes } = this.props;
+        loadConsentIndexes()
+    }
+
+    renderBody(indexconsents) {
+        let counter = 0;
+        const {loadConsentByIndex} = this.props;
+        if (indexconsents) {
+            let returns = indexconsents.map(function (index) {
+                counter++;
+                return <tr key={counter}>
+                    <td>{counter}</td>
+                    <td>{index}</td>
+                    <td>
+                        <button className="pure-button" value={index} onClick={()=>loadConsentByIndex(index)}>Details</button>
+                    </td>
+                </tr>
+            })
+            return returns
+        }
+        return <tr></tr>
+    }
+
+    renderTable(indexconsents) {
         return (
             <table className="pure-table pure-table-horizontal">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>Year</th>
+                        <th>Consents num</th>
+                        <th>Consent ID</th>
+                        <th>Show Details</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Honda</td>
-                        <td>Accord</td>
-                        <td>2009</td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>Toyota</td>
-                        <td>Camry</td>
-                        <td>2012</td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>Hyundai</td>
-                        <td>Elantra</td>
-                        <td>2010</td>
-                    </tr>
+                    {this.renderBody(indexconsents)}
                 </tbody>
             </table>
         )
     }
+
+    shouldComponentUpdate() {
+        return true;
+    }
+
+    renderDetails(index, consent) {
+        if (index)
+            return <table className="pure-table pure-table-horizontal">
+                <tbody>
+                    <tr>
+                        <td>enterprise name</td>
+                        <td>{consent.enterpriseName}</td>
+                    </tr>
+                    <tr>
+                        <td>candidate</td>
+                        <td>{consent.candidate}</td>
+                    </tr>
+                    <tr>
+                        <td>label</td>
+                        <td>{consent.label}</td>
+                    </tr>
+                    <tr>
+                        <td>consentType</td>
+                        <td>{consent.consentType}</td>
+                    </tr>
+                    <tr>
+                        <td>isActive</td>
+                        <td>{consent.isActive}</td>
+                    </tr>
+                    <tr>
+                        <td>createdDate</td>
+                        <td>{consent.createdDate}</td>
+                    </tr>
+                    <tr>
+                        <td>expiryDate</td>
+                        <td>{consent.expiryDate}</td>
+                    </tr>
+                </tbody>
+            </table>
+        return <div></div>
+    }
     render() {
         return (
             <div >
-                Hello {this.props.name}
-                {this.renderTable()}
+                Hello {this.props.name}. There is {this.props.indexconsents.length} consents for this enterprise
+                {this.renderTable(this.props.indexconsents)}
+                {this.renderDetails(this.props.showConsent, this.props.consent)}
             </div>
         )
     }

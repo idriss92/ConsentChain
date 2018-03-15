@@ -11,11 +11,15 @@ import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends Component {
   render() {
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
       <span>
+        <li className="pure-menu-item">
+          <Link to="/job" className="pure-menu-link">Job</Link>
+        </li>
         <li className="pure-menu-item">
           <Link to="/dashboard" className="pure-menu-link">Dashboard</Link>
         </li>
@@ -45,9 +49,6 @@ class App extends Component {
       <div className="App">
         <nav className="navbar pure-menu pure-menu-horizontal">
           <ul className="pure-menu-list navbar-right">
-            <li className="pure-menu-item">
-            <Link to="/job" className="pure-menu-link">Job</Link>
-            </li>
             <OnlyGuestLinks />
             <OnlyAuthLinks />
           </ul>

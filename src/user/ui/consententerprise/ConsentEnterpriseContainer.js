@@ -6,7 +6,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         name: state.user.user.name,
         indexconsents: state.user.indexconsents,
-        consents: state.user.consents
+        consent: state.user.consent,
+        showConsent: state.user.showConsent
 
     }
 }

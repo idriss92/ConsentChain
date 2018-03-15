@@ -41,7 +41,7 @@ ReactDOM.render((
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
           <Route path="candidat" component={UserIsAuthenticated(Candidat)} />
           <Route path="entreprise" component={UserIsAuthenticated(Entreprise)} />
-          <Route path="job" component={UserIsNotAuthenticated(Job)} />
+          <Route path="job" component={UserIsAuthenticated(Job)} />
         </Route>
       </Router>
     </Provider>

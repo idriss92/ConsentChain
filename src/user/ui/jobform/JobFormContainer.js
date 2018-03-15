@@ -3,20 +3,28 @@ import JobForm from './JobForm'
 import { createConsent } from './JobFormActions'
 
 const mapStateToProps = (state, ownProps) => {
-    return {}
+    return {
+        name: state.user.user.name
+    }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onNewConsentCommit: () => {
-            dispatch(createConsent())
-        }
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         onNewConsentCommit: () => {
+//             dispatch(createConsent())
+//         }
+//     }
+// }
+
+const createNewConsent = (candidate, consentType, label, enterpriseName) => {
+    return dispatch => {
+        dispatch(createConsent(candidate, consentType, label, enterpriseName))
     }
 }
 
 const JobFormContainer = connect(
     mapStateToProps,
-    mapDispatchToProps
+    {createNewConsent}
 )(JobForm)
 
 export default JobFormContainer

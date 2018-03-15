@@ -50,7 +50,7 @@ export function getCandidatConsent(_candidate) {
                 }
                 consentGdpr.deployed().then(function(instance){
                     consentInstance = instance
-                    consentInstance.getConsentLabelsIndexByEnterprise("TAL",{from: coinbase})
+                    consentInstance.getConsentLabelsIndexByEnterprise("Talentsoft",{from: coinbase})
                     .then(function(result) {
                         console.log(result.length);
                         return dispatch(getCandidatConsentSuccess(result.length))
@@ -84,34 +84,13 @@ export function getConsentIndex() {
 
                 gdpr.deployed().then(function(instance) {
                     gdprInstance = instance
-                    // let indexes = [];
-                    let consents = [];
-                    gdprInstance.getConsentsIndexByEnterprise("enterpriseName", {from: coinbase})
-                    .then(function(result) {
-                        result.forEach(function(index) {
-                            console.log(index)
-                            gdprInstance.getConsentsByIndexByEnterprise("enterpriseName", index, {gas: 1000000, from: coinbase})
-                            .then(function(result) {
-        
-                                console.log('hello '+ index)
-                                let consent = {
-                                    "index": result[0].c[0],
-                                    "candidate": result[1],
-                                    "consentType": result[2],
-                                    "label": result[3],
-                                    "isActive": result[4],
-                                    "enterpriseName": result[5],
-                                    "createdDate": result[6].c[0],
-                                    "expiryDate": result[7].c[0]
-                                }
-                                consents.push(consent)
-                                // return dispatch(getConsentSuccess(consent))
-                            })
-                            // indexes.push(index.c[0])   
-
+                    let indexes = [];
+                    gdprInstance.getConsentsIndexByEnterprise("Talentsoft", {from: coinbase})
+                    .then(function(allIndex) {
+                        allIndex.forEach(function(index) {
+                            indexes.push(index.c[0])
                         })
-                        // return dispatch(getConsentIndexes(indexes))
-                        return dispatch(getConsentSuccess(consents))
+                        return dispatch(getConsentIndexes(indexes))
                     })
                     .catch(function(result) {
                         console.error(result)
@@ -143,10 +122,8 @@ export function getConsentByIndex(index) {
                 gdpr.deployed().then(function(instance) {
                     gdprInstance = instance
                     let consent
-                    gdprInstance.getConsentsByIndexByEnterprise("enterpriseName", index, {gas: 1000000, from: coinbase})
+                    gdprInstance.getConsentsByIndexByEnterprise("Talentsoft", index, {from: coinbase})
                     .then(function(result) {
-
-                        console.log('hello')
                         consent = {
                             "index": result[0].c[0],
                             "candidate": result[1],
