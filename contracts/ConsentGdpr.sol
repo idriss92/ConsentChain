@@ -174,7 +174,7 @@ contract ConsentGdpr {
             isActive: true, 
             enterpriseName: _enterpriseName, 
             createdDate: now, 
-            expiryDate: now + 1 years
+            expiryDate: now + (86400 * 1 minutes)
             });
     }
 

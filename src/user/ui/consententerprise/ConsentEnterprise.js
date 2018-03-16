@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import Timestamp from 'react-timestamp'
 
 class ConsentEnterprise extends Component {
     constructor(props) {
@@ -83,24 +84,16 @@ class ConsentEnterprise extends Component {
                         <td>{consent.candidate}</td>
                     </tr>
                     <tr>
-                        <td>label</td>
-                        <td>{consent.label}</td>
-                    </tr>
-                    <tr>
-                        <td>consentType</td>
-                        <td>{consent.consentType}</td>
-                    </tr>
-                    <tr>
                         <td>isActive</td>
                         <td>{this.renderButtonActivated(consent.isActive)}</td>
                     </tr>
                     <tr>
                         <td>createdDate</td>
-                        <td>{consent.createdDate}</td>
+                        <td><Timestamp time={consent.createdDate} /></td>
                     </tr>
                     <tr>
                         <td>expiryDate</td>
-                        <td>{consent.expiryDate}</td>
+                        <td><Timestamp time={consent.expiryDate} /></td>
                     </tr>
                 </tbody>
             </table>
