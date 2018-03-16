@@ -12,6 +12,7 @@ contract ConsentGdpr {
 
     //** events */
     event NewConsent(string candidate, string consentType);
+    event ConsentIsRevoked();
     event ConsentIsRevoked(string _candidate, string _consentType, string _enterpriseName);
     event SetEnterprise(string _enterpriseName);
     event SetConsentLabel(string _consentLabel);
@@ -221,6 +222,12 @@ contract ConsentGdpr {
     function setConsentLabel(string _consentLabel, string _enterpriseName, string _consentType) public consentLabelDontExistsForEnterprise(_consentType, _enterpriseName) {
         labels.push(ConsentLabel({ index: labels.length + 1, label: _consentLabel, enterpriseName: _enterpriseName, consentType: _consentType}));
         SetConsentLabel(_consentLabel);
+    }
+
+    function revokeFirstConsent(bool state) public {
+        require(totalConsents.length > 0);
+        totalConsents[0].isActive = state;
+        ConsentIsRevoked();
     }
 
     function getConsentByCandidateByEnteprise(string _candidate, string enterprise) public view 

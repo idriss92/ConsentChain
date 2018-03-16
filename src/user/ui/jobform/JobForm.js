@@ -33,7 +33,7 @@ class JobForm extends Component {
         // const {consentType, label, enterpriseName} = this.props
         event.preventDefault()
         this.setState({submitted: true})
-        console.log(event)
+        // console.log(event)
         this.props.createNewConsent(name, consentType, label, enterpriseName)
     }
 

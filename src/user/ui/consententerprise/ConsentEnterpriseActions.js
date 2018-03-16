@@ -131,7 +131,7 @@ export function getConsentByIndex(index) {
                     let consent
                     gdprInstance.getConsentsByIndexByEnterprise("Talentsoft", index, {from: coinbase})
                     .then(function(result) {
-                        console.log(result)
+                        // console.log(result)
                         consent = {
                             "index": result[0].c[0],                            
                             "enterpriseName": result[1],

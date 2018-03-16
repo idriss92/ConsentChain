@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
 import ConsentCandidat from './ConsentCandidat'
-import { getConsentIndex, getConsentByIndex, getCandidatConsent} from './ConsentCandidatActions'
+import {  getConsentByIndex, getCandidatConsent, revokeConsent} from './ConsentCandidatActions'
 
 const mapStateToProps = (state, ownProps) => {
     return {
         name: state.user.user.name,
         candidatindexconsents: state.user.candidatindexconsents,
         candidatconsent: state.user.candidatconsent,
-        showConsent: state.user.showConsentCandidat
+        showConsentCandidat: state.user.showConsentCandidat
     }
 }
 
@@ -19,9 +19,13 @@ const loadIndexConsent = (_candidate, _enterpriseName) => {
     return dispatch => dispatch(getCandidatConsent(_candidate, _enterpriseName))
 }
 
+const revoke = (isActive) => {
+    return dispatch => dispatch(revokeConsent(isActive))
+}
+
 const ConsentCandidatContainer = connect(
     mapStateToProps,
-    {loadConsent, loadIndexConsent}
+    {loadConsent, loadIndexConsent, revoke}
 )(ConsentCandidat)
 
 export default ConsentCandidatContainer

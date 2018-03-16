@@ -7,59 +7,60 @@ class ConsentCandidat extends Component {
         this.state = {
             name: this.props.name,
             indexes: this.props.candidatindexconsents,
-            showConsent: this.props.showConsent,
-            consent: this.props.candidatconsent,
-            consentId: 0
+            showConsent: this.props.showConsentCandidat,
+            candidatconsent: this.props.candidatconsent,
+            consentId: 0,
+            isactive: true
         }
     }
 
     componentWillMount(){
+        console.log(this.props)
         const { loadIndexConsent } = this.props;
         loadIndexConsent(this.props.name,"Talentsoft")
 
+        if (this.props.candidatconsent) this.setState({isactive : true })
+        else this.setState({isactive : false })
+        
     }
 
-    renderBody(indexconsents) {
-        let counter = 0;
-        const {loadConsent} = this.props;
-        if (indexconsents) {
-            let returns = indexconsents.map(function (index) {
-                counter++;
-                return <tr key={counter}>
-                    <td>{counter}</td>
-                    <td>{index}</td>
-                    <td>
-                        <button className="pure-button" value={index} onClick={()=>loadConsent(index)}>Details</button>
-                    </td>
-                </tr>
-            })
-            return returns
-        }
-        return <tr></tr>
+    componentDidUpdate(props) {
+    }
+
+    handlesubmit(event) {
+        event.preventDefault()
+        this.props.revoke(this.state.isactive)
+    }
+
+    handleOnchangeYes(){
+        this.setState({isactive : false })
+    }
+    
+    handleOnchangeFalse() {
+        this.setState({isactive : true })
     }
 
     renderTable(indexconsents) {
-        console.log('render tabel')
-        console.log(indexconsents)
+        let to = indexconsents?<input type="checkbox" checked="yes" onChange={this.handleOnchangeYes.bind(this)}/>:<input type="checkbox" onChange={this.handleOnchangeFalse.bind(this)} />
         return (
-            <div>
+            <form onSubmit={this.handlesubmit.bind(this)}>
                 <div className="company">
                     <h3>Coolblue</h3>
                     <div>
-                        <input type="checkbox" checked="yes"/>
+                        <input type="checkbox" checked="yes" onChange={console.log()}/>
                         <label>contact me for opportunity: Devops engineer<span className="consent-date"> - changed on 2018-03-01</span></label>
                     </div>
-                    <div> <input type="checkbox"/>
+                    <div> <input type="checkbox" defaultChecked={false} onChange={console.log()}/>
                         <label>contact me for all opportunities</label>
                     </div>
                 </div>
                 <div className="company">
                     <h3>Dior</h3>
                     <div>
-                        <input type="checkbox" checked="yes"/>
+                        <input type="checkbox" checked="yes" onChange={console.log()}/>
                         <label>contact me for opportunity: Software developer <span className="consent-date"> - changed on 2018-03-02</span></label>
                     </div>
-                    <div> <input type="checkbox"/>
+                    <div> <input type="checkbox" defaultChecked={false} onChange={console.log()}/>
                         <label>contact me for all opportunities</label>
                     </div>
                 </div>
@@ -67,7 +68,7 @@ class ConsentCandidat extends Component {
                 <div className="company">
                     <h3>Talentsoft</h3>
                     <div>
-                        <input type="checkbox"/>
+                        {to}
                         <label>contact me for opportunity: Software developer <span className="consent-date"> - changed on 2018-03-02</span></label>
                     </div>
                 </div>
@@ -76,50 +77,8 @@ class ConsentCandidat extends Component {
                 <div className="submitDiv">
                     <input type="submit"/>
                 </div>
-            </div>
+            </form>
         )
-    }
-
-    
-
-    renderDetails(index, consent) {
-        console.log(index)
-        console.log('consent candidat')
-        console.log(consent)
-        if (consent)
-            return <table className="pure-table pure-table-horizontal">
-                <tbody>
-                    <tr>
-                        <td>enterprise name</td>
-                        <td>{consent.enterpriseName}</td>
-                    </tr>
-                    <tr>
-                        <td>candidate</td>
-                        <td>{consent.candidate}</td>
-                    </tr>
-                    <tr>
-                        <td>label</td>
-                        <td>{consent.label}</td>
-                    </tr>
-                    <tr>
-                        <td>consentType</td>
-                        <td>{consent.consentType}</td>
-                    </tr>
-                    <tr>
-                        <td>isActive</td>
-                        <td>{this.renderButtonActivated(consent.isActive)}</td>
-                    </tr>
-                    <tr>
-                        <td>createdDate</td>
-                        <td>{consent.createdDate}</td>
-                    </tr>
-                    <tr>
-                        <td>expiryDate</td>
-                        <td>{consent.expiryDate}</td>
-                    </tr>
-                </tbody>
-            </table>
-        return <div></div>
     }
     
     renderButtonActivated(isActivated) {
@@ -132,8 +91,7 @@ class ConsentCandidat extends Component {
     render() {
         return (
             <div >
-                Hello {this.props.name}. There is {this.props.candidatindexconsents.length} consents for this enterprise
-                {this.renderTable(this.props.consent)}
+                {this.renderTable(this.state.isactive)}
             </div>
         )
     }
@@ -141,5 +99,4 @@ class ConsentCandidat extends Component {
 
 export default ConsentCandidat;
 
-  // 
-//   
+   

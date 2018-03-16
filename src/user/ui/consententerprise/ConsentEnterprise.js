@@ -61,7 +61,7 @@ class ConsentEnterprise extends Component {
     }
 
     renderDetails(index, consent) {
-        console.log(index)
+        // console.log(index)
         if (index)
             return <table className="pure-table pure-table-horizontal">
                 <tbody>

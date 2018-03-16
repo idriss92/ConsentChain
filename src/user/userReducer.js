@@ -20,9 +20,12 @@ const userReducer = (state = initialState, action) => {
 
   if (action.type === 'CONSENT_CANDIDAT_SUCCESS') {
     return Object.assign({}, state, {
-      candidatconsent: action.payload
+      candidatconsent: action.payload,
+      showConsentCandidat: true
     })
   }
+
+  
 
   if (action.type === 'USER_LOGGED_OUT')
   {
@@ -52,10 +55,16 @@ const userReducer = (state = initialState, action) => {
 
   if (action.type === 'CONSENTINDEX_CANDIDAT_SUCCESS') {
     return Object.assign({}, state, {
-      candidatindexconsents: action.payload,
-      showConsentCandidat: true
+      candidatindexconsents: action.payload
     })
   }
+
+  if (action.type === 'REVOKE_CONSENT_SUCCESS') {
+    return Object.assign({}, state, {
+    })
+  }
+
+  
  
   return state
 }
