@@ -230,7 +230,7 @@ contract ConsentGdpr {
         ConsentIsRevoked();
     }
 
-    function getConsentByCandidateByEnteprise(string _candidate, string enterprise) public view 
+    function getConsentByCandidateByEnterprise(string _candidate, string enterprise) public view 
         returns(
         uint index,
         string enterpriseName,
