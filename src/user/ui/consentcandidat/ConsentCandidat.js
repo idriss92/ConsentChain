@@ -15,7 +15,7 @@ class ConsentCandidat extends Component {
 
     componentWillMount(){
         const { loadIndexConsent } = this.props;
-        loadIndexConsent("idriss","Talentsoft")
+        loadIndexConsent(this.props.name,"Talentsoft")
 
     }
 
@@ -39,6 +39,8 @@ class ConsentCandidat extends Component {
     }
 
     renderTable(indexconsents) {
+        console.log('render tabel')
+        console.log(indexconsents)
         return (
             <div>
                 <div className="company">
@@ -61,7 +63,15 @@ class ConsentCandidat extends Component {
                         <label>contact me for all opportunities</label>
                     </div>
                 </div>
-                    {this.renderBody(indexconsents)}
+
+                <div className="company">
+                    <h3>Talentsoft</h3>
+                    <div>
+                        <input type="checkbox"/>
+                        <label>contact me for opportunity: Software developer <span className="consent-date"> - changed on 2018-03-02</span></label>
+                    </div>
+                </div>
+                   
                 
                 <div className="submitDiv">
                     <input type="submit"/>
@@ -70,15 +80,13 @@ class ConsentCandidat extends Component {
         )
     }
 
-    shouldComponentUpdate() {
-        return true;
-    }
+    
 
     renderDetails(index, consent) {
         console.log(index)
         console.log('consent candidat')
         console.log(consent)
-        if (index)
+        if (consent)
             return <table className="pure-table pure-table-horizontal">
                 <tbody>
                     <tr>
@@ -125,7 +133,7 @@ class ConsentCandidat extends Component {
         return (
             <div >
                 Hello {this.props.name}. There is {this.props.candidatindexconsents.length} consents for this enterprise
-                {this.renderTable(this.props.candidatindexconsents)}
+                {this.renderTable(this.props.consent)}
             </div>
         )
     }
@@ -134,4 +142,4 @@ class ConsentCandidat extends Component {
 export default ConsentCandidat;
 
   // 
-//   {this.renderDetails(this.props.showConsent, this.props.consent)}
+//   

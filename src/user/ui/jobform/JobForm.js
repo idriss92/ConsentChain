@@ -43,10 +43,7 @@ class JobForm extends Component {
                 <fieldset>
                     <br />
                     <label htmlFor="consent1">
-                        <input type="checkbox"/> Consent 1
-                    </label>
-                    <label htmlFor="consent2">
-                        <input type="checkbox" value="hel"/> Consent 2
+                        <input type="checkbox"/> contact me for opportunity: Software developer
                     </label>
                     <button type="submit" className="pure-button pure-button-primary">Apply</button>
                 </fieldset>

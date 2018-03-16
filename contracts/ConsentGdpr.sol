@@ -223,4 +223,28 @@ contract ConsentGdpr {
         SetConsentLabel(_consentLabel);
     }
 
+    function getConsentByCandidateByEnteprise(string _candidate, string enterprise) public view 
+        returns(
+        uint index,
+        string enterpriseName,
+        string candidate,
+        string label,
+        string consentType,
+        bool isActive,
+        uint createdDate,
+        uint expiryDate)
+        {
+            require(totalConsents.length > 0);
+            Consent memory consentReturned = totalConsents[0];
+            index = consentReturned.index;
+            enterpriseName = consentReturned.enterpriseName;
+            candidate = consentReturned.candidate;
+            label = consentReturned.label;
+            consentType = consentReturned.consentType;
+            isActive = consentReturned.isActive;
+            createdDate = consentReturned.createdDate;
+            expiryDate = consentReturned.expiryDate;
+           
+        }
+
 }
