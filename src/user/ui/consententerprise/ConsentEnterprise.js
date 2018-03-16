@@ -25,13 +25,13 @@ class ConsentEnterprise extends Component {
         if (indexconsents) {
             let returns = indexconsents.map(function (index) {
                 counter++;
-                return <tr key={counter}>
-                    <td>{counter}</td>
-                    <td>{index}</td>
-                    <td>
-                        <button className="pure-button" value={index} onClick={()=>loadConsentByIndex(index)}>Details</button>
-                    </td>
-                </tr>
+                return <div className="candidate">
+                        <div className="candidate-name">Tom</div>
+                        <div className="candidate-consents">
+                            <div>Contact for opportunity: software developer <a href="javascript:void(0);" onClick={()=>loadConsentByIndex(index)}>details</a></div>
+                            <div></div>
+                        </div>
+                    </div>
             })
             return returns
         }
@@ -40,19 +40,24 @@ class ConsentEnterprise extends Component {
 
     renderTable(indexconsents) {
         return (
-            <table className="pure-table pure-table-horizontal">
-                <thead>
-                    <tr>
-                        <th>Consents num</th>
-                        <th>Consent ID</th>
-                        <th>Show Details</th>
-                    </tr>
-                </thead>
-
-                <tbody>
+            <div className="company-block">
+                
+                <div className="candidate">
+                    <div className="candidate-name">Kedar Lee</div>
+                    <div className="candidate-consents">
+                        <div>Contact for opportunity: CTO  <a href="">details</a></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div className="candidate">
+                    <div className="candidate-name">Cécile Tesson</div>
+                    <div className="candidate-consents">
+                        <div>Contact for all opportunities</div>
+                        <div></div>
+                    </div>
+                </div>
                     {this.renderBody(indexconsents)}
-                </tbody>
-            </table>
+            </div>  
         )
     }
 
@@ -108,7 +113,7 @@ class ConsentEnterprise extends Component {
     render() {
         return (
             <div >
-                Hello {this.props.name}. There is {this.props.indexconsents.length} consents for this enterprise
+
                 {this.renderTable(this.props.indexconsents)}
                 {this.renderDetails(this.props.showConsent, this.props.consent)}
             </div>

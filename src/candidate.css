@@ -25,3 +25,24 @@ body {
 
     margin-top:40px
 }
+
+
+/* Enterprise */
+
+.company-block {
+
+}
+
+.company-block {
+    
+}
+
+.candidate-name {
+    border-bottom: 1px  solid #0E3568;
+    font-weight: bold
+}
+
+.candidate {
+    width:400px;
+    margin-bottom: 20px
+}
