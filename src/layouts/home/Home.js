@@ -6,8 +6,7 @@ class Home extends Component {
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-            <h1>Consent Chain</h1>
-            <h2>Smart Contract Consent Chain</h2>
+          Welcome on the manager on consent between candidat and enterprise
            </div>
         </div>
       </main>

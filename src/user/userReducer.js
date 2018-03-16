@@ -64,6 +64,12 @@ const userReducer = (state = initialState, action) => {
     })
   }
 
+  if(action.type === 'RESET_CONSENT_SUCCESS') {
+    return Object.assign({}, state, {
+      showConsent: false
+    })
+  }
+
   
  
   return state

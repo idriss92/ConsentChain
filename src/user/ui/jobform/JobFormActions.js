@@ -1,5 +1,6 @@
 import ConsentGdpr from '../../../../build/contracts/ConsentGdpr.json'
 import store from '../../../store'
+import { browserHistory } from 'react-router'
 
 const contract = require('truffle-contract')
 
@@ -33,7 +34,8 @@ export function createConsent(candidate, consentType, label, enterpriseName) {
                     gdprInstance.setConsent(candidate, consentType, label, enterpriseName, {from: coinbase})
                     .then(function(result) {
                         console.log(result)
-                        return dispatch(createConsentSuccess())
+                        dispatch(createConsentSuccess())
+                        return browserHistory.push('/dashboard')
                     })
                     .catch(function(result) {
                         console.error(result)

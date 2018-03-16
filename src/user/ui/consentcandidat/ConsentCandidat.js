@@ -24,6 +24,7 @@ class ConsentCandidat extends Component {
         
     }
 
+
     componentDidUpdate(props) {
     }
 

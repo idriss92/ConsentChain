@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ConsentEnterprise from './ConsentEnterprise'
-import { getConsentIndex, getConsentByIndex, createConsentLabel } from './ConsentEnterpriseActions'
+import { getConsentIndex, getConsentByIndex, createConsentLabel, resetConsentOnEnterprise } from './ConsentEnterpriseActions'
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -24,6 +24,13 @@ const loadConsentByIndex = (index) => {
     }
 }
 
+const resetTheConsent = () => {
+    return dispatch => {
+        dispatch(resetConsentOnEnterprise())
+    }
+}
+
+
 const newConsentLabel = (consentType, enterpriseName, consentLabel) => {
     return dispatch => {
         dispatch(createConsentLabel(enterpriseName, consentType, consentLabel))
@@ -32,7 +39,7 @@ const newConsentLabel = (consentType, enterpriseName, consentLabel) => {
 
 const ConsentEnterpriseContainer = connect(
     mapStateToProps,
-    { loadConsentIndexes, loadConsentByIndex, newConsentLabel }
+    { loadConsentIndexes, loadConsentByIndex, newConsentLabel, resetTheConsent }
 )(ConsentEnterprise)
 
 export default ConsentEnterpriseContainer

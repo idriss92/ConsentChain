@@ -9,11 +9,19 @@ export const CONSENT_CANDIDAT_SUCCESS = 'CONSENT_CANDIDAT_SUCCESS'
 export const GET_CONSENTS_INDEXES_DONE = 'GET_CONSENTS_INDEXES_DONE'
 export const GET_CONSENTS_SUCCESS = 'GET_CONSENTS_SUCCESS'
 export const SET_CONSENTLABEL_SUCCESS = 'SET_CONSENTLABEL_SUCCESS'
+export const RESET_CONSENT_SUCCESS = 'RESET_CONSENT_SUCCESS'
 
 function getCandidatConsentSuccess(consents) {
     return {
         type: CONSENT_CANDIDAT_SUCCESS,
         payload: consents
+    }
+}
+
+function resetConsent() {
+    return {
+        type: RESET_CONSENT_SUCCESS,
+        payload: false
     }
 }
 
@@ -38,6 +46,12 @@ function setConsentLabel() {
     }
 }
 
+
+export function resetConsentOnEnterprise() {
+    return function (dispatch) {
+        return dispatch(resetConsent())
+    }
+}
 export function getCandidatConsent(_candidate) {
     let web3 = store.getState().web3.web3Instance
 

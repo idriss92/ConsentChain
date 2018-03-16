@@ -16,10 +16,10 @@ class JobForm extends Component {
     }
 
     handleChange(event) {
-        const {name, value} = event.target
-        const {consent} = this.state
+        const { name, value } = event.target
+        const { consent } = this.state
         this.setState({
-            consent:{
+            consent: {
                 ...consent,
                 [name]: value
             }
@@ -29,10 +29,10 @@ class JobForm extends Component {
     handleSubmit(event) {
         // console.log(this.props)
         // console.log(this.state)
-        const {name, consentType, label, enterpriseName} = this.state.consent
+        const { name, consentType, label, enterpriseName } = this.state.consent
         // const {consentType, label, enterpriseName} = this.props
         event.preventDefault()
-        this.setState({submitted: true})
+        this.setState({ submitted: true })
         // console.log(event)
         this.props.createNewConsent(name, consentType, label, enterpriseName)
     }
@@ -43,13 +43,13 @@ class JobForm extends Component {
                 <fieldset>
                     <br />
                     <label htmlFor="consent1">
-                        <input type="checkbox"/> contact me for opportunity: Software developer
+                        <input type="checkbox" /> contact me for opportunity: Software developer
                     </label>
                     <button type="submit" className="pure-button pure-button-primary">Apply</button>
                 </fieldset>
             </form>
-                    )
-                }
-            }
-            
+        )
+    }
+}
+
 export default JobForm

@@ -18,6 +18,10 @@ class ConsentEnterprise extends Component {
         const { loadConsentIndexes } = this.props;
         loadConsentIndexes()
     }
+    
+    componentWillUnmount () {
+        this.props.resetTheConsent()
+    }
 
     renderBody(indexconsents) {
         let counter = 0;
@@ -25,7 +29,7 @@ class ConsentEnterprise extends Component {
         if (indexconsents) {
             let returns = indexconsents.map(function (index) {
                 counter++;
-                return <div className="candidate">
+                return <div key={counter} className="candidate">
                         <div className="candidate-name">Tom</div>
                         <div className="candidate-consents">
                             <div>Contact for opportunity: software developer <a href="javascript:void(0);" onClick={()=>loadConsentByIndex(index)}>details</a></div>

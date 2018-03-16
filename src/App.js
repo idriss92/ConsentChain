@@ -22,8 +22,8 @@ class App extends Component {
           <Link to="/job" className="pure-menu-link">Job</Link>
         </li>
         <li className="pure-menu-item">
-        <Link to="/consentlabel" className="pure-menu-link">ConsentLabel</Link>
-      </li>
+          <Link to="/consentlabel" className="pure-menu-link">ConsentLabel</Link>
+        </li>
         <li className="pure-menu-item">
           <Link to="/dashboard" className="pure-menu-link">Dashboard</Link>
         </li>
@@ -52,11 +52,13 @@ class App extends Component {
     return (
       <div className="App">
         <nav className="navbar pure-menu pure-menu-horizontal">
+          <ul className="pure-menu-list navbar-left">
+            <Link to="/" className="pure-menu-heading pure-menu-link">Consent Chain</Link>
+          </ul>
           <ul className="pure-menu-list navbar-right">
             <OnlyGuestLinks />
             <OnlyAuthLinks />
           </ul>
-          <Link to="/" className="pure-menu-heading pure-menu-link">Truffle Box</Link>
         </nav>
 
         {this.props.children}

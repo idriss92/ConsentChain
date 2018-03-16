@@ -49,7 +49,7 @@ export function getCandidatConsent(_candidate) {
                 consentGdpr.deployed().then(function(instance){
                     consentInstance = instance
                     console.log(consentInstance)
-                    consentInstance.getConsentByCandidateByEnterprise(_candidate,"Talentsoft",{from: coinbase})
+                    consentInstance.getConsentByCandidateByEnteprise(_candidate,"Talentsoft",{from: coinbase})
                     .then(function(result) {
                         // console.log(result);
                         // let consent = {
