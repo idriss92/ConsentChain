@@ -2,6 +2,24 @@ import React, { Component } from 'react'
 import JobFormContainer from '../../ui/jobform/JobFormContainer'
 
 class Job extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.handleChange = this.handleChange.bind(this)
+    }
+    
+    handleChange(event) {
+        const {name, value} = event.target
+        const {consent} = this.state
+        this.setState({
+            consent:{
+                ...consent,
+                [name]: value
+            }
+        })
+    }
+
     render() {
         return (
             <main id="vacancy" className="container">
@@ -64,7 +82,7 @@ class Job extends Component {
                                             <span className="application-form-mandatory">*</span>
                                         </td>
                                         <td className="application-form-item-content">
-                                            <input className="application-form-input" data-val="true" data-val-length="" data-val-length-max="255" data-val-required="" id="ApplicationFormItems_0__StringValue" name="ApplicationFormItems[0].StringValue" required="" type="text" value="" aria-required="true"></input>
+                                            <input className="application-form-input" onChange={this.handleChange} data-val="true" data-val-length="" data-val-length-max="255" data-val-required="" id="ApplicationFormItems_0__StringValue" name="ApplicationFormItems[0].StringValue" required="" type="text" value="" aria-required="true"></input>
                                         </td>
                                     </tr>
                                     <tr>
@@ -73,7 +91,7 @@ class Job extends Component {
                                             <span className="application-form-mandatory">*</span>
                                         </td>
                                         <td className="application-form-item-content">
-                                            <input className="application-form-input" data-val="true" data-val-length="" data-val-length-max="255" data-val-required="" id="ApplicationFormItems_1__StringValue" name="ApplicationFormItems[1].StringValue" required="" type="text" value="" aria-required="true"></input>
+                                            <input className="application-form-input"  onChange={this.handleChange} data-val="true" data-val-length="" data-val-length-max="255" data-val-required="" id="ApplicationFormItems_1__StringValue" name="ApplicationFormItems[1].StringValue" required="" type="text" value="" aria-required="true"></input>
                                         </td>
                                     </tr>
                                     <tr>
@@ -82,7 +100,7 @@ class Job extends Component {
                                             <span className="application-form-mandatory">*</span>
                                         </td>
                                         <td className="application-form-item-content">
-                                            <input className="application-form-input" data-val="true" data-val-length="" data-val-length-max="255" data-val-required="" id="ApplicationFormItems_2__EmailValue" name="ApplicationFormItems[2].EmailValue" required="" type="email" value="" aria-required="true"></input>
+                                            <input className="application-form-input"  onChange={this.handleChange} data-val="true" data-val-length="" data-val-length-max="255" data-val-required="" id="ApplicationFormItems_2__EmailValue" name="ApplicationFormItems[2].EmailValue" required="" type="email" value="" aria-required="true"></input>
                                         </td>
                                     </tr>
                                     <tr>
@@ -91,7 +109,7 @@ class Job extends Component {
 
                                         </td>
                                         <td className="application-form-item-content">
-                                            <input className="application-form-input" data-val="true" data-val-length="" data-val-length-max="50" id="ApplicationFormItems_3__StringValue" name="ApplicationFormItems[3].StringValue" type="text" value=""></input>
+                                            <input className="application-form-input"  onChange={this.handleChange} data-val="true" data-val-length="" data-val-length-max="50" id="ApplicationFormItems_3__StringValue" name="ApplicationFormItems[3].StringValue" type="text" value=""></input>
                                         </td>
                                     </tr>
                                     <tr>
@@ -100,7 +118,7 @@ class Job extends Component {
 
                                         </td>
                                         <td className="application-form-item-content">
-                                            <textarea className="application-form-textarea" cols="20" data-val="true" data-val-length="" data-val-length-max="1000" id="ApplicationFormItems_4__StringValue" name="ApplicationFormItems[4].StringValue" rows="2"></textarea>
+                                            <textarea className="application-form-textarea"  onChange={this.handleChange} cols="20" data-val="true" data-val-length="" data-val-length-max="1000" id="ApplicationFormItems_4__StringValue" name="ApplicationFormItems[4].StringValue" rows="2"></textarea>
                                         </td>
                                     </tr>
                                     <tr>
